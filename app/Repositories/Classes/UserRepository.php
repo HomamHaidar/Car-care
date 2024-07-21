@@ -20,7 +20,7 @@ class UserRepository extends BasicRepository implements IAdminRepository, IMainR
      */
 
     protected array $fieldSearchable = [
-        'id', 'first_name', 'last_name', 'email', 'phone'
+        'id', 'name', 'email', 'phone'
     ];
 
     /**

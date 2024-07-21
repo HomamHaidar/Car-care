@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Sanctum\Sanctum;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Pagination\Paginator;
+use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -35,5 +38,6 @@ class AppServiceProvider extends ServiceProvider
                 return true;
             }
         });
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
     }
 }
