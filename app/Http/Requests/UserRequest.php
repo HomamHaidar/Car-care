@@ -22,14 +22,10 @@ class UserRequest extends FormRequest
     protected function store(): array
     {
         return [
-            'first_name' => ['required', 'string', 'max:50', 'min:2'],
-            'last_name' => ['required', 'string', 'max:50', 'min:2'],
-            'email' => ['required', 'string', 'max:125', 'min:9', "email:rfc,dns", Rule::unique('users')->ignore($this->id)],
-            'phone' => ['required','digits_between:9,11',  Rule::unique('users')->ignore($this->id)],
-            'image' => ['nullable', 'mimes:jpeg,png,jpg,gif' . 'svg|max:4096'],
+            'name' => ['required', 'string', 'max:50', 'min:2'],
+            'email' => ['required', 'string', 'max:125', 'min:9', "email:rfc,dns", Rule::unique('users')],
+            'phone' => ['required', 'string', 'max:20', 'min:9', Rule::unique('users')],
             'password' => ['required', 'string', 'min:8', 'max:255', 'confirmed'],
-            'active'   => ['nullable', 'in:active,pending'],
-            'categories'    => ['nullable', 'array', 'min:1'],
         ];
     }
 
@@ -41,17 +37,10 @@ class UserRequest extends FormRequest
     {
 
         return [
-            'first_name' => ['required', 'string', 'max:50', 'min:2'],
-            'last_name' => ['required', 'string', 'max:50', 'min:2'],
+            'name' => ['required', 'string', 'max:50', 'min:2'],
             'email' => ['required', 'string', 'max:125', 'min:9', "email:rfc,dns", Rule::unique('users')->ignore($this->id)],
-            'phone' => ['required','digits_between:9,11',  Rule::unique('users')->ignore($this->id)],
-            'image' => ['nullable', 'mimes:jpeg,png,jpg,gif' . 'svg|max:4096'],
+            'phone' => ['required', 'string', 'max:20', 'min:9', Rule::unique('users')->ignore($this->id)],
             'password' => ['nullable', 'string', 'min:8', 'max:255', 'confirmed'],
-            'active'   => ['nullable', 'in:active,pending'],
-            'categories'    => ['nullable', 'array', 'min:1'],
-
-
-
         ];
     }
 

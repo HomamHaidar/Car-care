@@ -41,7 +41,7 @@ var KTDocsList = (function () {
                 {
                     data: null,
                     render: function (data, type, row) {
-                        return data.first_name + " " + data.last_name;
+                        return data.name;
                     },
                 },
                 { data: "email" },
