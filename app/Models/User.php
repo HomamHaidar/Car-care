@@ -49,6 +49,7 @@ class User extends Authenticatable
         ];
     }
 
+
     public function generateCode()
     {
         $this->timestamps = false;
@@ -62,5 +63,6 @@ class User extends Authenticatable
             return true;
         }
         return false;
+
     }
 }
