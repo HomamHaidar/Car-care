@@ -43,14 +43,9 @@ class UserRequest extends FormRequest
             'password' => ['nullable', 'string', 'min:8', 'max:255', 'confirmed'],
         ];
     }
-
-    /**
-     * @return \string[][]
-     */
-    public function rules(): array
+    public function rules()
     {
 
-        return request()->isMethod('put') || request()->isMethod('patch') ?
-            $this->update() : $this->store();
+        return request()->isMethod('put') || request()->isMethod('patch') ? $this->update() : $this->store();
     }
 }

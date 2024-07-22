@@ -26,7 +26,6 @@ class User extends Authenticatable
         'code',
         'expire_at',
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -50,11 +49,20 @@ class User extends Authenticatable
         ];
     }
 
-    public function generateOtpCode()
+
+    public function generateCode()
     {
         $this->timestamps = false;
         $this->code = rand(1000, 9999);
-        $this->expire_at = now()->addMinutes(5);
+        $this->expire_at = now()->addMinutes(15);
         $this->save();
+    }
+    public function validateCode($inputCode)
+    {
+        if ($this->code === $inputCode && now()->lessThanOrEqualTo($this->expire_at)) {
+            return true;
+        }
+        return false;
+
     }
 }
