@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Interfaces\OfferRepository;
+use App\Services\Classes\OfferService;
 use Laravel\Sanctum\Sanctum;
 
 use Illuminate\Pagination\Paginator;
@@ -39,5 +41,10 @@ class AppServiceProvider extends ServiceProvider
             }
         });
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+
+        $this->app->bind(OfferRepository::class, \App\Repositories\Classes\OfferRepository::class);
+        $this->app->bind(OfferService::class, function ($app) {
+            return new OfferService($app->make(OfferRepository::class));
+        });
     }
 }
