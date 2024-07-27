@@ -50,31 +50,12 @@ class OfferRepository implements \App\Repositories\Interfaces\OfferRepository
         $Offer=Offer::findOrFail($id);
         return new OfferResource($Offer);
     }
-//
-//    public function update($request, $id)
-//    {
-//        $offer=Offer::findOrFail($id);
-//
-//        return  request()->file($request->image);
-//        if ($request->hasfile('image')) {
-//         //   Storage::disk('public')->delete($offer->image);
-//           // $filePath = Storage::disk('public')->put('images/',, 'public');
-//            $validated['image'] = $filePath;
-//        }
-//
-//        $translations = $request->only(['ar_title', 'ar_title','en_title','en_description']);
-//
-//        $offer->translateOrNew("ar")->title = $translations['ar_title'];
-//        $offer->translateOrNew("ar")->description = $translations['ar_title'];
-//
-//        $offer->translateOrNew("en")->title = $translations['en_title'];
-//        $offer->translateOrNew("en")->description = $translations['en_description'];
-//
-//        $offer->save();
-//        $offer->update($request->all());
-//        return response(new OfferResource($offer),202);
-//    }
-//
+
+    public function update($request, $id)
+    {
+
+    }
+
     public function destroy($id)
     {
         // TODO: Implement destroy() method.

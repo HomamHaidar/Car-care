@@ -18,6 +18,7 @@ return [
     'view' => 'View',
     'Dashboard' => 'Dashboard',
     'Roles & Permissions' => 'Roles & Permissions',
+    'offers' => 'offers',
     'Roles' => 'Roles',
     'Total-admins-wr' => 'Total admins with this role',
     'Role' => 'Role',
