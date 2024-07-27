@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\Award;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\offer\Offer;
 use App\Models\Region;
 use App\Models\Role;
 use App\Models\Service;
@@ -19,6 +20,7 @@ class DashboardController extends Controller
     {
         $users = User::count();
         $roles = Role::count();
+        $offers = Offer::count();
 
         $admins = Admin::count();
 
@@ -26,7 +28,7 @@ class DashboardController extends Controller
             'users' => $users,
             'roles' => $roles,
             'admins' => $admins,
-
+            'offers'=>$offers
 
         ]);
     }

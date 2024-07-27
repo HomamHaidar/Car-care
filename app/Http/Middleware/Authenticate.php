@@ -21,7 +21,7 @@ class Authenticate extends Middleware
 
             if (Str::contains($url, 'dashboard')) {
                 return route('login');
-            } 
+            }
             return route('web.login');
 
         }
