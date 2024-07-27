@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Auth\VerifyOtp;
 use App\Http\Controllers\API\Auth\LoginController;
 use App\Http\Controllers\API\Auth\RegisterController;
+use App\Http\Controllers\API\Auth\ResetPasswordController;
+use App\Http\Controllers\API\Auth\ForgetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +22,15 @@ use App\Http\Controllers\API\Auth\RegisterController;
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
+Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword']);
+Route::post('reset-password', [ResetPasswordController::class, 'resetPassword']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('verify-otp', [VerifyOtp::class, 'verifyOtp']);
+    Route::apiResource('offer', offerController::class);
+    Route::get('get_valid_offer',[offerController::class,'get_valid_offer']);
+
 
 });
-Route::apiResource('offer', offerController::class);
-Route::get('get_valid_offer',[offerController::class,'get_valid_offer']);
+
+
+
