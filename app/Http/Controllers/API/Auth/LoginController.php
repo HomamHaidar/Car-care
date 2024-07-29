@@ -1,22 +1,24 @@
 <?php
 namespace App\Http\Controllers\API\Auth;
 
-use App\Http\Requests\LoginRequest;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use Twilio\Rest\Client;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 Class LoginController extends Controller
 {
 
-    public function login(LoginRequest $request)
+    public function loginWithEmail(LoginRequest $request)
     {
-        $loginType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
         $credentials  = [
-            $loginType => $request->login,
+            'email' => $request->email,
             'password' => $request->password
         ];
+
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
@@ -30,4 +32,30 @@ Class LoginController extends Controller
 
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
-}
+    public function loginWithPhone(Request $request)
+    {
+        $validatedData = $request->validate([
+            'phone' => 'required|string',
+        ]);
+        $user = User::where('phone', $validatedData['phone'])->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'These credentials do not match our records.'], 404);
+        }
+            $user->generateCode();
+            $user->save();
+
+            $message = "Your OTP is " . $user->code;
+            $account_sid = getenv("TWILIO_SID");
+            $auth_token = getenv("TWILIO_TOKEN");
+            $twilio_number = getenv("TWILIO_FROM");
+
+            $client = new Client($account_sid, $auth_token);
+            $client->messages->create('+2'.$user->phone, [
+                'from' => $twilio_number,
+                'body' => $message,
+            ]);
+
+            return response()->json(['message' => 'OTP sent Successfully To Your Phone'], 201);
+        }
+ }

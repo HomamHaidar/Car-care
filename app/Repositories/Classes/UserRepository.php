@@ -60,17 +60,8 @@ class UserRepository extends BasicRepository implements IAdminRepository, IMainR
      */
     public function store($data)
     {
-        if (isset($data['image'])) {
-            $data['image']  = storeImage('Users', $data['image']);
-        }
-        $data['active']= 'active';
         $data['password'] = Hash::make($data['password']);
-        $categories = $data['categories'];
-        unset($data['categories']);
         $user=  $this->create($data);
-        $user->categories()->sync($categories);
-
-
     }
     public function list()
     {
@@ -91,11 +82,6 @@ class UserRepository extends BasicRepository implements IAdminRepository, IMainR
     public function update($request, $id = null)
     {
         $user = $this->find($id);
-        if (isset($request['image'])) {
-            $request['image'] = storeImage('Users', $request['image']) ?? $user->image;
-            deleteImage('Users', $user['image']);
-        }
-
         return $this->save($request, $id);
     }
 

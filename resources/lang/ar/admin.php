@@ -1,4 +1,3 @@
-
 <?php
 
 use Facade\Ignition\Support\Packagist\Packagist;
@@ -40,7 +39,7 @@ return [
     'Name' => 'الاسم',
     'Email' => 'البريد الإلكتروني',
     'Phone' => 'رقم الهاتف',
-    'Enter-the' => 'أدخل',
+    'Enter-the' => ' أدخل ',
     'please-choose' => 'اختر من',
     'please-wait' => '...انتظر من فضلك',
     'categories' => 'فئات',

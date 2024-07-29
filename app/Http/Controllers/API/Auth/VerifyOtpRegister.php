@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class VerifyOtp extends Controller
+class VerifyOtpRegister extends Controller
 {
     public function verifyOtp(Request $request)
     {
