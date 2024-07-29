@@ -82,6 +82,15 @@ Route::group(
                     Route::get('/', 'index')->name('index');
                     Route::put('/update', 'update')->name('update');
                 });
+                Route::controller(\App\Http\Controllers\Dashboard\Offer\OfferController::class)->prefix('offers')->name('offers.')->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::post('/store', 'store')->name('store');
+                    Route::get('/{id}/edit', 'edit')->name('edit');
+                    Route::put('/{id}/update', 'update')->name('update');
+                    Route::delete('/{id}/', 'destroy')->name('delete');
+                });
+
             });
         });
     }

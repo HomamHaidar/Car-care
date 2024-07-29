@@ -39,7 +39,9 @@ var KTDocsList = (function () {
                 { data: "id" },
                 { data: "id" },
                 {
+
                 data: "name",
+
                 },
                 { data: "email" },
                 { data: "phone" },

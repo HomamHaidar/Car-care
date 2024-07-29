@@ -25,6 +25,7 @@ return [
     'Password-confirmation' => 'تأكيد كلمة المرور',
     'Dashboard' => 'لوحة التحكم',
     'Roles & Permissions' => 'الأدوار والتصاريح',
+    'offers' => 'الكوبونات',
     'Role-Permissions' => 'تصاريح الدور',
     'Administrator-Access' => 'تحكم المشرفين ',
     'Joined-Date' => 'تاريخ الانضمام',

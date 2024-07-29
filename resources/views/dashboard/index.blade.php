@@ -110,12 +110,11 @@
                                 <div class="card-title d-flex flex-column">
                                     <!--begin::Amount-->
                                     <span
-                                        class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">{{ __('admin.categories') }}</span>
+                                        class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">{{ __('admin.offers') }}</span>
                                     <!--end::Amount-->
                                     <!--begin::Subtitle-->
                                     <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip">
-                                        <span class="symbol-label bg-light  text-inverse fw-bold">0
-                                        </span>
+                                        <span class="symbol-label bg-gray  text-inverse fw-bold">{{ $offers }}</span>
                                     </div>
                                     <!--end::Subtitle-->
                                 </div>
@@ -125,7 +124,7 @@
                             <!--begin::Card body-->
                             <div class="card-body d-flex flex-column justify-content-end pe-0">
                                 <!--begin::Title-->
-                                <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">{{ __('admin.categories') }}</span>
+                                <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">{{ __('admin.offers') }}</span>
                                 <!--end::Title-->
                                 <!--begin::Users group-->
                                 {{-- <div class="symbol-group symbol-hover flex-nowrap">

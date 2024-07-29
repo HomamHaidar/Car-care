@@ -27,6 +27,7 @@ class UserController extends Controller
         $this->authorize('view_users');
 
         if ($request->ajax()) {
+
             $users = $this->userService->findBy($request);
             return response()->json($users);
         }
