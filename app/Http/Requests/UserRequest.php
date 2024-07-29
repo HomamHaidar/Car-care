@@ -46,6 +46,6 @@ class UserRequest extends FormRequest
     public function rules()
     {
 
-        return request()->isMethod('put') || request()->isMethod('patch') ? $this->update() : $this->store();
+        return request()->isMethod('put') || request()->isMethod('post') ? $this->update() : $this->store();
     }
 }
