@@ -12,6 +12,11 @@ class OfferService
     public function __construct(
         protected OfferRepository $offerrepository
     ){}
+    public function findBy(Request $request)
+    {
+        return $this->offerrepository->findBy($request);
+    }
+
     public function index(){
         return $this->offerrepository->index();
     }
@@ -29,6 +34,10 @@ class OfferService
 
     public function show( $id){
         return $this->offerrepository->show($id);
+
+    }
+    public function edit($id){
+        return $this->offerrepository->edit($id);
 
     }
 
