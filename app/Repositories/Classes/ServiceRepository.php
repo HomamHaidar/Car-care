@@ -3,7 +3,8 @@
 namespace App\Repositories\Classes;
 
 use App\Models\Admin;
-use App\Models\Service;
+
+use App\Models\service\Service;
 use App\Repositories\Interfaces\IAdminRepository;
 use App\Repositories\Interfaces\IMainRepository;
 use Illuminate\Http\Request;

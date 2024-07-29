@@ -18,6 +18,7 @@ class OfferController extends Controller
     }
     public function index()
     {
+
         return $this->offerService->index();
     }
     public function get_valid_offer()

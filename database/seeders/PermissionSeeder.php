@@ -20,6 +20,7 @@ class PermissionSeeder extends Seeder
             'admins',
             'roles',
             'users',
+            'offers',
             'brands',
             'categories',
             'awards',
