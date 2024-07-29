@@ -3,19 +3,32 @@
 namespace App\Repositories\Classes;
 
 use App\Http\Resources\OfferResource;
+
 use App\Models\offer\Offer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class OfferRepository implements \App\Repositories\Interfaces\OfferRepository
+class OfferRepository extends BasicRepository implements \App\Repositories\Interfaces\OfferRepository
 {
+    protected array $fieldSearchable = [
+       "title","description","code",
+    ];
 
+    public function model(): string
+    {
+        return Offer::class;
+    }
 
     public function index()
     {
         $offer= Offer::with('Service')->get();
 
         return  OfferResource::collection($offer);
+    }
+    public function findBy(Request $request, $andsFilters = []): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return $this->all(orderBy:$request->order, andsFilters: $andsFilters);
     }
     public function get_valid_offer()
     {
@@ -24,24 +37,21 @@ class OfferRepository implements \App\Repositories\Interfaces\OfferRepository
         return  OfferResource::collection($offer);
     }
 
-    public function store($request)
+    public function store($data)
     {
-        $validated = $request->validated();
+        if (isset($data['image'])) {
+            $data['image']  = storeImage('offer', $data['image']);
+        }
+        $offer=  $this->create($data);
 
-            $filePath = Storage::disk('public')->put('images', request()->file('image'));
-            $validated['image'] =$filePath;
-        $offer=Offer::create($validated);
+        $offer->translateOrNew("ar")->title = $data['ar_title'];
+        $offer->translateOrNew("ar")->description = $data['ar_description'];
 
-        $translations = $request->only(['ar_title', 'ar_title','en_title','en_description']);
-
-        $offer->translateOrNew("ar")->title = $translations['ar_title'];
-        $offer->translateOrNew("ar")->description = $translations['ar_title'];
-
-        $offer->translateOrNew("en")->title = $translations['en_title'];
-        $offer->translateOrNew("en")->description = $translations['en_description'];
+        $offer->translateOrNew("en")->title = $data['en_title'];
+        $offer->translateOrNew("en")->description = $data['en_description'];
 
         $offer->save();
-        return response(new OfferResource($offer),200);
+
 
     }
 
@@ -50,14 +60,51 @@ class OfferRepository implements \App\Repositories\Interfaces\OfferRepository
         $Offer=Offer::findOrFail($id);
         return new OfferResource($Offer);
     }
+    public function edit($id)
+    {
+        return $this->find($id);
+    }
 
     public function update($request, $id)
     {
 
+        $offer = $this->find($id);
+        if (isset($request['image'])) {
+            $request['image'] = storeImage('Offer', $request['image']) ?? $offer->image;
+            deleteImage('offer', $offer['image']);
+        }
+
+        return $this->save($request, $id);
     }
 
-    public function destroy($id)
+
+    public function destroy($id): mixed
     {
-        // TODO: Implement destroy() method.
+        $offer = $this->find($id);
+
+        deleteImage('Offer', $offer['image']);
+        return $this->delete($id);
     }
+
+
+
+    public function getFieldsSearchable()
+    {
+        return $this->fieldSearchable;
+    }
+
+    public function getFieldsRelationShipSearchable()
+    {
+        // TODO: Implement getFieldsRelationShipSearchable() method.
+    }
+
+    public function translationKey()
+    {
+        // TODO: Implement translationKey() method.
+    }
+    public function create($request)
+    {
+        return $this->model->create($request);
+    }
+
 }

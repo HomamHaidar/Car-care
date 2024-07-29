@@ -16,9 +16,9 @@ class ServiceService
         $this->serviceRepository = $serviceRepository;
     }
 
-    public function findBy(Request $request)
+    public function findBy()
     {
-        return $this->serviceRepository->findBy($request);
+        return $this->serviceRepository->findBy();
     }
 
     public function store($request)

@@ -54,7 +54,7 @@
                          <!--begin:Menu item-->
                          <div class="menu-item">
                              <!--begin:Menu link-->
-                             <a class="menu-link {{ prefixActive('offer') }}" href="{{ route('offer.index') }}">
+                             <a class="menu-link {{ prefixActive('offer') }}" href="{{ route('offers.index') }}">
                                  <span class="menu-bullet">
                                      <span class="bullet bullet-dot"></span>
                                  </span>

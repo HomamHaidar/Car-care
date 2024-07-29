@@ -34,3 +34,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('get_valid_offer',[offerController::class,'get_valid_offer']);
 });
 
+
+
