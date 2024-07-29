@@ -40,7 +40,7 @@ class UserController extends Controller
     public function create()
     {
         $this->authorize('create_users');
-        return view(checkView('dashboard.users.create'), compact('categories'));
+        return view(checkView('dashboard.users.create'));
     }
     /**
      * @param UserRequest $request
