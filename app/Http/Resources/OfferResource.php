@@ -16,7 +16,6 @@ class OfferResource extends JsonResource
     {
         return[
             'id'=>$this->id,
-
             'ar_title'=>$this->translate('ar')->title,
             'en_title'=>$this->translate('en')->title,
             'ar_description'=>$this->translate('ar')->description,
