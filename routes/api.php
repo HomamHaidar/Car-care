@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Car\CarController;
 use App\Http\Controllers\API\Offer\OfferController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('verify-otp', [VerifyOtp::class, 'verifyOtp']);
     Route::apiResource('offer', offerController::class);
     Route::get('get_valid_offer',[offerController::class,'get_valid_offer']);
+    Route::apiResource('car', CarController::class);
 });
+
 
 
 
