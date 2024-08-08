@@ -22,4 +22,5 @@ class Offer extends Model implements TranslatableContract
     public function Service(){
         return $this->belongsTo(Service::class);
     }
+    protected $with=['Service'];
 }

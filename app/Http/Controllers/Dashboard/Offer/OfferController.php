@@ -7,6 +7,7 @@ use App\Http\Requests\OfferRequest;
 use App\Models\offer\Offer;
 use App\Models\service\Service;
 use App\Services\Classes\OfferService;
+
 use App\Services\Classes\ServiceService;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,11 @@ class OfferController extends Controller
     protected $offerService;
     protected $servicesService;
 
-    public function __construct(OfferService $offerService ,ServiceService $serviceService)
+    public function __construct(OfferService $offerService, ServiceService  $servicesService)
     {
         $this->offerService = $offerService;
-        $this->servicesService = $serviceService;
+        $this->servicesService = $servicesService;
+
     }
     /**
      * Display a listing of the resource.
@@ -28,8 +30,8 @@ class OfferController extends Controller
         $this->authorize('view_offers');
 
         if ($request->ajax()) {
-            $admins = $this->offerService->findBy($request);
-            return response()->json($admins);
+            $offers= $this->offerService->findBy($request);
+            return response()->json($offers);
         }
         return view(checkView('dashboard.offers.index'));
     }
@@ -40,8 +42,10 @@ class OfferController extends Controller
     public function create()
     {
         $this->authorize('create_offers');
-        $services =Service::all();
-        return view(checkView('dashboard.offers.create'),compact('services'));
+        //$services =Service::all();
+        $services = $this->servicesService->findBy(request());
+
+        return view(checkView('dashboard.offers.create'),  get_defined_vars());
     }
 
     /**
@@ -69,8 +73,10 @@ class OfferController extends Controller
     {
         $this->authorize('update_offers');
 
-        $offer = $this->offerService->edit($id);
-        $services = Service::all();
+        $offer = $this->offerService->show($id);
+        //$services = Service::all();
+        $services = $this->servicesService->findBy(request());
+
         return view(checkView('dashboard.offers.edit'),  get_defined_vars());
     }
 
@@ -79,7 +85,7 @@ class OfferController extends Controller
      */
     public function update(OfferRequest $request, string $id)
     {
-        $this->authorize('update_users');
+        $this->authorize('update_offers');
 
         return $this->offerService->update($request->validated(), $id);
     }
@@ -87,9 +93,9 @@ class OfferController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $this->authorize('delete_admins');
+        $this->authorize('delete_offers');
 
         $this->offerService->destroy($id);
     }

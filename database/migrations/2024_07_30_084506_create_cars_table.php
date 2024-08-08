@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('brand');
             $table->string('category');
-            $table->tinyInteger('is_oil')->nullable();
+            $table->string('oil')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API\Offer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfferRequest;
+use App\Http\Resources\OfferResource;
+use App\Models\offer\Offer;
 use App\Services\Classes\OfferService;
 use Illuminate\Http\Request;
 
@@ -28,8 +30,8 @@ class OfferController extends Controller
 
     public function show(string $id)
     {
-
-        return $this->offerService->show($id);
+        $Offer=Offer::findOrFail($id);
+        return new OfferResource($Offer);
     }
 
 

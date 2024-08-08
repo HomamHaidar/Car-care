@@ -177,7 +177,7 @@
                                     <div class="d-flex align-items-center mb-2">
 
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1">{{ __('admin.brands') }}</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1">{{ __('admin.orders') }}</span>
                                         <!--end::Value-->
 
                                     </div>
@@ -185,7 +185,7 @@
                                     <!--begin::Description-->
                                     <span class="symbol-label bg-light  text-inverse fw-bold">
                                         <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip">
-                                            <span class="symbol-label bg-gray  text-inverse fw-bold">0</span>
+                                            <span class="symbol-label bg-gray  text-inverse fw-bold">{{$orders}}</span>
                                         </div>
                                     </span>
                                     <!--end::Description-->
@@ -255,15 +255,15 @@
                                     <div class="d-flex align-items-center mb-2">
                                         <!--begin::Value-->
                                         <span
-                                            class="fs-2hx fw-bold text-gray-800 me-2 lh-1">{{ __('admin.awards') }}</span>
+                                            class="fs-2hx fw-bold text-gray-800 me-2 lh-1">{{ __('admin.cars') }}</span>
                                         <!--end::Value-->
 
                                     </div>
                                     <!--end::Statistics-->
                                     <!--begin::Description-->
-                                    <span class="fs-6 fw-semibold text-gray-400">Total {{ __('admin.awards') }}
+                                    <span class="fs-6 fw-semibold text-gray-400">Total {{ __('admin.cars') }}
                                         <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip">
-                                            <span class="symbol-label bg-light  text-inverse fw-bold">0</span>
+                                            <span class="symbol-label bg-light  text-inverse fw-bold">{{$cars}}</span>
                                         </div>
 
                                     </span>

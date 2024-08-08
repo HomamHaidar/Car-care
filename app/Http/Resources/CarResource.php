@@ -18,7 +18,7 @@ class CarResource extends JsonResource
             'id'=>$this->id,
             'brand'=>$this->brand,
             'category'=>$this->category,
-            'is_oil'=>$this->is_oil,
+            'Oil'=>$this->oil,
         ];
     }
 }

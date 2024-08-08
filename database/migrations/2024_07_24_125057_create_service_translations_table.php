@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('service_translations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained()->cascadeOnDelete();
-            $table->string('name');
+            $table->unsignedBigInteger('service_id');
             $table->string('locale')->index();
+            $table->string('name');
             $table->unique(['service_id', 'locale']);
-            $table->timestamps();
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
     }
 

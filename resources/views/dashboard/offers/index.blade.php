@@ -122,12 +122,14 @@
                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_datatable_example_1 .form-check-input" value="1"/>
                         </div>
                     </th>
+
                     <th>{{__('id')}}</th>
                     <th>{{__('offer.title')}}</th>
                     <th>{{__('offer.description')}}</th>
                     <th>{{__('offer.code')}}</th>
                     <th>{{__('offer.type')}}</th>
                     <th>{{__('offer.discount')}}</th>
+                    <th>{{__('offer.Discounted service')}}</th>
                     <th>{{__('offer.expire_date')}}</th>
                     <th class="text-end min-w-100px">{{__('admin.Actions')}}</th>
                 </tr>

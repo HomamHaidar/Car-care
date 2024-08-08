@@ -5,34 +5,34 @@ namespace App\Repositories\Classes;
 use App\Http\Resources\CarResource;
 use App\Models\Car;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-class CarRepository  implements \App\Repositories\Interfaces\CarRepository
+class CarRepository extends BasicRepository implements \App\Repositories\Interfaces\CarRepository
 {
 
+    protected array $fieldSearchable = [
+        'id', 'brand', 'category', 'oil'
+    ];
     public function index()
     {
         $car= Car::all();
-
-        return  CarResource::collection($car);
+        return $car;
     }
 
-    public function findBy(Request $request)
+    public function findBy(Request $request, $andsFilters = []): \Illuminate\Database\Eloquent\Collection|array
     {
-             return $request;
+        return $this->all(orderBy:$request->order, andsFilters: $andsFilters);
     }
+
 
     public function store($request)
     {
-        $validated = $request->validated();
 
-        $car=Car::create($validated);
-        return response(new CarResource($car),200);
+        $car=Car::create($request);
+        return $car;
     }
 
     public function show($id)
     {
-        $car=Car::findOrFail($id);
-        return new CarResource($car);
+        return $this->find($id);
     }
 
     public function edit($id)
@@ -42,18 +42,37 @@ class CarRepository  implements \App\Repositories\Interfaces\CarRepository
 
     public function update($request, $id)
     {
-        $validated = $request->validated();
         $car=Car::FindOrFail($id);
 
-        $car->update($validated);
-        return response(new CarResource($car),202);
+        $car->update($request);
+        return $car;
     }
 
     public function destroy($id)
     {
-        $car=Car::FindOrFail($id);
+        return $this->delete($id);
 
-        $car->delete();
-        return response(null,Response::HTTP_NO_CONTENT);
     }
+
+    public function model()
+    {
+        return Car::class;
+
+    }
+
+    public function getFieldsSearchable(): array
+    {
+        return $this->fieldSearchable;
+    }
+
+    public function getFieldsRelationShipSearchable()
+    {
+        return $this->model->searchRelationShip;
+    }
+
+    public function translationKey()
+    {
+        return $this->model->translationKey();
+    }
+
 }

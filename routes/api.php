@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\API\Car\CarController;
 use App\Http\Controllers\API\Offer\OfferController;
+use App\Http\Controllers\API\Order\OrderController;
+use App\Http\Controllers\API\Record\RecordController;
+use App\Http\Controllers\Api\Service\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Auth\VerifyOtpLogin;
@@ -31,11 +34,15 @@ Route::post('verify_otp_login', [VerifyOtpLogin::class, 'verifyOtp']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('verify_otp_register', [VerifyOtpRegister::class, 'verifyOtp']);
     Route::post('verify-otp', [VerifyOtp::class, 'verifyOtp']);
+    Route::apiResource('car', CarController::class);
+
     Route::apiResource('offer', offerController::class);
     Route::get('get_valid_offer',[offerController::class,'get_valid_offer']);
-    Route::apiResource('car', CarController::class);
+
+    Route::get('services/search', [ServiceController::class, 'search']);
+    Route::get('services', [ServiceController::class, 'index']);
+
+    Route::apiResource('order', OrderController::class);
 });
-
-
 
 

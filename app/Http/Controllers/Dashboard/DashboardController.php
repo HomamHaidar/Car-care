@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Award;
 use App\Models\Brand;
+use App\Models\Car;
 use App\Models\Category;
 use App\Models\offer\Offer;
+use App\Models\Order;
 use App\Models\Region;
 use App\Models\Role;
 use App\Models\Service;
@@ -21,15 +23,17 @@ class DashboardController extends Controller
         $users = User::count();
         $roles = Role::count();
         $offers = Offer::count();
-
+        $orders = Order::count();
+        $cars=Car::count();
         $admins = Admin::count();
 
         return view('dashboard.index')->with([
             'users' => $users,
             'roles' => $roles,
             'admins' => $admins,
-            'offers'=>$offers
-
+            'offers'=>$offers,
+            'orders'=>$orders,
+            'cars'=>$cars
         ]);
     }
 
