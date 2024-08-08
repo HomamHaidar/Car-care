@@ -284,5 +284,7 @@ return [
     "wrong_confirmation_code" => 'رمز التـأكيد خطأ',
     'confirmation_code_expired' => 'انتهت صلاحية رمز التفعيل الخاص بك',
     'number_of_months' => 'عدد الشهور',
+    'orders'=>'الطلبات',
+    'cars'=>'السيارات',
 
 ];

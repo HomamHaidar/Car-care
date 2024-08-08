@@ -16,7 +16,7 @@ var KTDocsList = (function () {
             stateSave: true,
             processing: true,
             serverSide: true,
-            order: [[5, "asc"]],
+            order: [[6, "asc"]],
             // stateSave: true,
             select: {
                 style: "multi",
@@ -46,11 +46,26 @@ var KTDocsList = (function () {
                 { data: "description" },
                 { data: "code" },
                 { data: "type" },
+
                 { data: "discount" },
+                { data: "service.name" },
                 { data: "expire_date" },
                 { data: null },
             ],
             columnDefs: [
+                {
+                    targets: 5,
+                    orderable: true,
+                    render: function (data) {
+                        if (data==0) {
+                            return     `${translate("Percentage")}`
+                        }
+                        else {
+                            return     `${translate("Digital")}`
+                        }
+
+                    },
+                },
                 {
                     targets: 0,
                     orderable: false,

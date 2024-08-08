@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\Dashboard\{
-    AdminController,
+use App\Http\Controllers\Dashboard\{AdminController,
     AuthController,
-
+    Car\CarController,
     DashboardController,
-
+    Order\OrderController,
+    Record\RecordController,
     RoleController,
     SettingController,
-    UserController
-};
+    UserController};
 
 
 use Illuminate\Support\Facades\{Artisan, Auth, Route};
@@ -90,7 +89,31 @@ Route::group(
                     Route::put('/{id}/update', 'update')->name('update');
                     Route::delete('/{id}/', 'destroy')->name('delete');
                 });
+                Route::controller(\App\Http\Controllers\Dashboard\Service\ServiceController::class)->prefix('services')->name('services.')->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::post('/store', 'store')->name('store');
+                    Route::get('/{id}/edit', 'edit')->name('edit');
+                    Route::put('/{id}/update', 'update')->name('update');
+                    Route::delete('/{id}/', 'destroy')->name('delete');
+                });
 
+                Route::controller(OrderController::class)->prefix('order')->name('orders.')->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::post('/store', 'store')->name('store');
+                    Route::get('/{id}/edit', 'edit')->name('edit');
+                    Route::put('/{id}/update', 'update')->name('update');
+                    Route::delete('/{id}/', 'destroy')->name('delete');
+                });
+                Route::controller(CarController::class)->prefix('car')->name('cars.')->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/create', 'create')->name('create');
+                    Route::post('/store', 'store')->name('store');
+                    Route::get('/{id}/edit', 'edit')->name('edit');
+                    Route::put('/{id}/update', 'update')->name('update');
+                    Route::delete('/{id}/', 'destroy')->name('delete');
+                });
             });
         });
     }

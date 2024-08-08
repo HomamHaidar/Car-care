@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model implements TranslatableContract
 {
-    use HasFactory,Translatable;
+    use HasFactory, Translatable;
     public $translatedAttributes = ['name'];
-    protected $fillable = ['price','available'];
-    public function Offer(){
-        return $this->belongsTo(Offer::class);
+    protected $fillable = ['price', 'availability'];
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
     }
 }

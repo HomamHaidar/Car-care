@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->integer('price');
-            $table->tinyInteger('available');
+            $table->decimal('price', 8, 2);
+            $table->boolean('availability');
             $table->timestamps();
         });
     }

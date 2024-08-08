@@ -22,9 +22,9 @@ class CarRequest extends FormRequest
     protected function store(): array
     {
         return [
-            'brand' => ['required'],
-            'category' => ['required'],
-            'is_oil' => ['nullable'],
+            'brand' => ['required','string'],
+            'category' => ['required','string'],
+            'oil' => ['nullable','string'],
 
         ];
     }
@@ -39,7 +39,7 @@ class CarRequest extends FormRequest
         return [
             'brand' => ['required'],
             'category' => ['required'],
-            'is_oil' => ['nullable'],
+            'oil' => ['nullable','string'],
 
         ];
     }

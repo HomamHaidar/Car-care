@@ -46,7 +46,7 @@ class CarService
     }
 
     public function destroy($id){
-        return $this->carrepository->destroy($id);
+         $this->carrepository->destroy($id);
 
     }
 

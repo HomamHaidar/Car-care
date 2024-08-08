@@ -3,15 +3,15 @@
 namespace App\Services\Classes;
 
 
-use App\Repositories\Interfaces\OfferRepository;
+use App\Repositories\Classes\OfferRepository;
 use Illuminate\Http\Request;
 
 class OfferService
 {
-
-    public function __construct(
-        protected OfferRepository $offerrepository
-    ){}
+    protected  $offerrepository;
+    public function __construct(OfferRepository $offerrepository){
+        $this->offerrepository = $offerrepository;
+    }
     public function findBy(Request $request)
     {
         return $this->offerrepository->findBy($request);
@@ -28,7 +28,7 @@ class OfferService
 
 
     public function store($request){
-        return $this->offerrepository->store($request);
+         $this->offerrepository->store($request);
 
     }
 
@@ -37,19 +37,20 @@ class OfferService
 
     }
     public function edit($id){
-        return $this->offerrepository->edit($id);
+
 
     }
 
 
 
     public function update($request,$id){
-        return $this->offerrepository->update($request,$id);
 
+        $offer= $this->offerrepository->update($request,$id);
+        return $offer;
     }
 
     public function destroy($id){
-        return $this->offerrepository->destroy($id);
+          $this->offerrepository->destroy($id);
 
     }
 

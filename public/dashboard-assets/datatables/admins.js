@@ -32,6 +32,7 @@ var KTDocsList = function () {
                 }
             },
             columns: [
+                {data:null},
                 { data: "id" },
                 { data: "name" },
                 { data: "email" },

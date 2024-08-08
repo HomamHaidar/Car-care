@@ -28,8 +28,9 @@ class PermissionSeeder extends Seeder
             'regions',
             'service',
             'settings',
-            'packages'
-
+            'packages',
+            'orders',
+            'cars',
 
         ];
 

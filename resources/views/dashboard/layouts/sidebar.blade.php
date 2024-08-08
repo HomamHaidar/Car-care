@@ -91,7 +91,7 @@
                          </div> --}}
                          <!--end:Menu item-->
                          <!--begin:Menu item-->
-                         {{-- <div class="menu-item">
+                          <div class="menu-item">
                              <!--begin:Menu link-->
                              <a class="menu-link {{ prefixActive('services') }}" href="{{ route('services.index') }}">
                                  <span class="menu-bullet">
@@ -100,7 +100,27 @@
                                  <span class="menu-title">{{ __('admin.services') }}</span>
                              </a>
                              <!--end:Menu link-->
-                         </div> --}}
+                         </div>
+                         <div class="menu-item">
+                             <!--begin:Menu link-->
+                             <a class="menu-link {{ prefixActive('orders') }}" href="{{ route('orders.index') }}">
+                                 <span class="menu-bullet">
+                                     <span class="bullet bullet-dot"></span>
+                                 </span>
+                                 <span class="menu-title">{{ __('admin.orders') }}</span>
+                             </a>
+                             <!--end:Menu link-->
+                         </div>
+                         <div class="menu-item">
+                             <!--begin:Menu link-->
+                             <a class="menu-link {{ prefixActive('cars') }}" href="{{ route('cars.index') }}">
+                                 <span class="menu-bullet">
+                                     <span class="bullet bullet-dot"></span>
+                                 </span>
+                                 <span class="menu-title">{{ __('admin.cars') }}</span>
+                             </a>
+                             <!--end:Menu link-->
+                         </div>
                          <!--end:Menu item-->
                          <!--begin:Menu item-->
                          {{-- <div class="menu-item">

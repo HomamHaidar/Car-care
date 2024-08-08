@@ -16,9 +16,9 @@ class ServiceService
         $this->serviceRepository = $serviceRepository;
     }
 
-    public function findBy()
+    public function findBy(Request $request)
     {
-        return $this->serviceRepository->findBy();
+        return $this->serviceRepository->findBy($request);
     }
 
     public function store($request)
@@ -34,15 +34,16 @@ class ServiceService
 
     public function update($request, $id)
     {
+        return $this->serviceRepository->update($request, $id);
+    }
 
 
-        $service = $this->serviceRepository->update($request, $id);
-        return $service;
+    public function find($id){
+        return $this->serviceRepository->find($id);
     }
 
     public function destroy($id)
     {
-        $this->serviceRepository->destroy($id);
+   $this->serviceRepository->destroy($id);
     }
 }
-

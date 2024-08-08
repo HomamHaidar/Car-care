@@ -22,12 +22,8 @@ class OfferRequest extends FormRequest
      */
     protected function store(): array
     {
-        return [
-            'ar_title' => ['required', 'string'],
-            'en_title' => ['required', 'string'],
+        $rules = [
             'code' => ['required', 'string'],
-            'ar_description' => ['required'],
-            'en_description' => ['required'],
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png'],
             'type' => ['required'],
             'discount' => ['required'],
@@ -35,6 +31,14 @@ class OfferRequest extends FormRequest
             'service_id' => ['required'],
 
         ];
+        foreach (config('translatable.locales') as $one_lang) {
+            $rules[$one_lang . '_title'] = 'required|min:2|max:100';
+        }
+        foreach (config('translatable.locales') as $one_lang) {
+            $rules[$one_lang . '_description'] = 'required|min:2|max:200';
+        }
+        return $rules;
+
     }
 
     /**
@@ -43,13 +47,8 @@ class OfferRequest extends FormRequest
      */
     protected function update(): array
     {
-
-        return [
-            'ar_title' => ['required', 'string'],
-            'en_title' => ['required', 'string'],
+        $rules = [
             'code' => ['required', 'string'],
-            'ar_description' => ['required'],
-            'en_description' => ['required'],
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png'],
             'type' => ['required'],
             'discount' => ['required'],
@@ -57,6 +56,13 @@ class OfferRequest extends FormRequest
             'service_id' => ['required'],
 
         ];
+        foreach (config('translatable.locales') as $one_lang) {
+            $rules[$one_lang . '_title'] = 'required|min:2|max:100';
+        }
+        foreach (config('translatable.locales') as $one_lang) {
+            $rules[$one_lang . '_description'] = 'required|min:2|max:100';
+        }
+        return $rules;
     }
     public function rules()
     {
@@ -64,3 +70,9 @@ class OfferRequest extends FormRequest
         return request()->isMethod('put') || request()->isMethod('patch') ? $this->update() : $this->store();
     }
 }
+
+
+
+
+
+

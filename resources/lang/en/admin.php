@@ -280,4 +280,7 @@ return [
     'number_of_months' => 'number of months',
     'Currentsubscription' => 'Current Subscription',
     'icon' => 'Icon Google',
+    'orders'=>'Orders',
+    'cars'=>'Cars',
+
 ];

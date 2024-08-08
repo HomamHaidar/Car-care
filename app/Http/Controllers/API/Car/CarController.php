@@ -4,8 +4,11 @@ namespace App\Http\Controllers\API\Car;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CarRequest;
+use App\Http\Resources\CarResource;
 use App\Services\Classes\CarService;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class CarController extends Controller
 {
@@ -15,7 +18,8 @@ class CarController extends Controller
     }
     public function index()
     {
-        return $this->carService->index();
+        $car= $this->carService->index();
+        return  CarResource::collection($car);
 
     }
 
@@ -24,7 +28,10 @@ class CarController extends Controller
      */
     public function store(CarRequest $request)
     {
-        return $this->carService->store($request);
+
+
+        $car=$this->carService->store($request->validated());
+        return response(new CarResource($car),200);
 
     }
 
@@ -33,7 +40,8 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
-        return $this->carService->show($id);
+        $car= $this->carService->show($id);
+        return new CarResource($car);
 
     }
 
@@ -42,7 +50,9 @@ class CarController extends Controller
      */
     public function update(CarRequest $request, string $id)
     {
-        return $this->carService->update($request,$id);
+        $car= $this->carService->update($request->validated(),$id);
+
+        return response(new CarResource($car),202);
 
     }
 
@@ -51,7 +61,9 @@ class CarController extends Controller
      */
     public function destroy(string $id)
     {
-        return $this->carService->destroy($id);
+
+         $this->carService->destroy($id);
+        return response(null,Response::HTTP_NO_CONTENT);
 
     }
 }
